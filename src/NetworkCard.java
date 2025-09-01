@@ -1,25 +1,24 @@
-/**
- * Simula a placa de rede de uma Máquina Virtual.
- * Ao receber dados, gera uma SystemCall.
- */
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 class NetworkCard {
-    private final VirtualMachine vm;
+    private final Lock lock = new ReentrantLock();
 
     /**
-     * Associa a placa de rede a uma VM.
-     * @param vm Máquina Virtual proprietária da placa
-     */
-    public NetworkCard(VirtualMachine vm) {
-        this.vm = vm;
-    }
-
-    /**
-     * Simula o recebimento de dados na placa de rede.
+     * Processa dados recebidos de forma thread-safe.
+     * @param vmName Nome da VM que esta recebendo os dados
      * @param data Dados recebidos
      */
-    public void receiveData(String data) {
-        System.out.println("[NetworkCard] Dados recebidos: " + data);
-        SystemCall call = new SystemCall(SystemCall.RECEIVE_DATA, data);
-        vm.getOperatingSystem().handleSystemCall(call);
+    public void receiveData(String vmName, String data) {
+        // REGIAO CRITICA - linha abaixo condicao de corrida
+        // lock.lock();
+        System.out.println("[NetworkCard - Física] Recebendo pacote para " + vmName + ": " + data);
+
+        // Simula processamento que pode ser interrompido
+        try {
+            Thread.sleep(100); // Tempo de processamento
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 }

@@ -11,7 +11,7 @@ class SystemCall {
     /**
      * Cria uma chamada de sistema.
      * @param type Tipo da chamada (ex.: RECEIVE_DATA)
-     * @param data Dados associados à chamada
+     * @param data Dados associados a chamada
      */
     public SystemCall(String type, String data) {
         this.type = type;

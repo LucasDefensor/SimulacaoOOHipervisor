@@ -1,8 +1,8 @@
 /**
- * Representa o Sistema Operacional de uma Máquina Virtual.
+ * Representa o Sistema Operacional de uma Maquina Virtual.
  * Possui dois modos:
- * - Usuário (gera chamadas de sistema)
- * - Núcleo (trata chamadas via handleSystemCall)
+ * - Usuario (gera chamadas de sistema)
+ * - Nucleo (trata chamadas via handleSystemCall)
  */
 class OperatingSystem {
     private final String name;
